@@ -1,0 +1,6 @@
+setLedTxt 500 "INI"
+
+// Init global variables used by other scripts
+setVar jigActive 0
+setVar powerClickActive 0
+setVar counterActive 0
