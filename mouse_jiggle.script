@@ -11,31 +11,29 @@ set backlight.keyRgb.base.80 255 255 0
 setLedTxt 500 "JIG"
 setLedTxt 500 "ON!"
 
-loop: // --------------------------------
+loop:
+    // Move mouse rightward
+    startMouse move left
+    delayUntil $moveTime
+    stopMouse move left
 
-// Move mouse rightward
-startMouse move left
-delayUntil $moveTime
-stopMouse move left
+    if ($jigActive == 0) goTo exit
+    delayUntil 250
 
-if ($jigActive == 0) goTo exit
-delayUntil 250
+    // Move mouse leftward
+    startMouse move right
+    delayUntil $moveTime
+    stopMouse move right
 
-// Move mouse leftward
-startMouse move right
-delayUntil $moveTime
-stopMouse move right
+    if ($jigActive == 0) goTo exit
+    delayUntil 250
 
-if ($jigActive == 0) goTo exit
-delayUntil 250
-
-if ($jigActive == 1) goTo loop
+    if ($jigActive == 1) goTo loop
  
-exit: // --------------------------------
+exit:
+    // Disable Backlight
+    set backlight.keyRgb.base.80 255 255 255
 
-// Disable Backlight
-set backlight.keyRgb.base.80 255 255 255
-
-// Show end sequence
-setLedTxt 500 "JIG"
-setLedTxt 500 "OFF"
+    // Show end sequence
+    setLedTxt 500 "JIG"
+    setLedTxt 500 "OFF"
