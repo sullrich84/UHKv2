@@ -1,0 +1,41 @@
+// Toggle jiggle state
+setVar jigActive !$jigActive
+if ($jigActive == 0) break
+
+setVar moveTime 10
+
+// Enable Backlight
+set backlight.keyRgb.base.80 255 255 0
+
+// Show start sequence
+setLedTxt 500 "JIG"
+setLedTxt 500 "ON!"
+
+loop: // --------------------------------
+
+// Move mouse rightward
+startMouse move left
+delayUntil $moveTime
+stopMouse move left
+
+if ($jigActive == 0) goTo exit
+delayUntil 250
+
+// Move mouse leftward
+startMouse move right
+delayUntil $moveTime
+stopMouse move right
+
+if ($jigActive == 0) goTo exit
+delayUntil 250
+
+if ($jigActive == 1) goTo loop
+ 
+exit: // --------------------------------
+
+// Disable Backlight
+set backlight.keyRgb.base.80 255 255 255
+
+// Show end sequence
+setLedTxt 500 "JIG"
+setLedTxt 500 "OFF"
