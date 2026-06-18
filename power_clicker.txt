@@ -1,0 +1,31 @@
+// Toggle power clicker state          
+setVar powerClickActive !$powerClickActive
+if ($powerClickActive == 0) break
+
+// Enable Backlight
+set backlight.keyRgb.base.79 255 0 0
+
+// Show start sequence
+setLedTxt 500 "PWR"
+setLedTxt 500 "CLK"
+setLedTxt 500 "ON!
+
+// -----------------------------------
+loop:
+
+// Power click
+tapKey mouseBtnLeft
+
+if ($powerClickActive == 0) goTo exit
+if ($powerClickActive == 1) goTo loop
+
+exit:
+// -----------------------------------
+
+// Disable Backlight
+set backlight.keyRgb.base.79 255 255 255
+
+// Show end sequence
+setLedTxt 500 "PWR"
+setLedTxt 500 "CLK"
+setLedTxt 500 "OFF"
