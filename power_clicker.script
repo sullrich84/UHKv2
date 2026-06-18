@@ -10,8 +10,7 @@ setLedTxt 500 "PWR"
 setLedTxt 500 "CLK"
 setLedTxt 500 "ON!
 
-// -----------------------------------
-loop:
+loop: // --------------------------------
 
 // Power click
 tapKey mouseBtnLeft
@@ -19,8 +18,7 @@ tapKey mouseBtnLeft
 if ($powerClickActive == 0) goTo exit
 if ($powerClickActive == 1) goTo loop
 
-exit:
-// -----------------------------------
+exit: // --------------------------------
 
 // Disable Backlight
 set backlight.keyRgb.base.79 255 255 255
