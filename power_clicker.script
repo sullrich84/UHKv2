@@ -10,20 +10,18 @@ setLedTxt 500 "PWR"
 setLedTxt 500 "CLK"
 setLedTxt 500 "ON!
 
-loop: // --------------------------------
+loop:
+    // Power click
+    tapKey mouseBtnLeft
 
-// Power click
-tapKey mouseBtnLeft
+    if ($powerClickActive == 0) goTo exit
+    if ($powerClickActive == 1) goTo loop
 
-if ($powerClickActive == 0) goTo exit
-if ($powerClickActive == 1) goTo loop
+exit:
+    // Disable Backlight
+    set backlight.keyRgb.base.79 255 255 255
 
-exit: // --------------------------------
-
-// Disable Backlight
-set backlight.keyRgb.base.79 255 255 255
-
-// Show end sequence
-setLedTxt 500 "PWR"
-setLedTxt 500 "CLK"
-setLedTxt 500 "OFF"
+    // Show end sequence
+    setLedTxt 500 "PWR"
+    setLedTxt 500 "CLK"
+    setLedTxt 500 "OFF"
